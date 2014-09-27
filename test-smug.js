@@ -9,7 +9,7 @@ smug.smugify('./hello_world.js', function(error, result) {
     } else {
         fs.writeFileSync('./hello_smug.js', result);
         var hello = require('./hello_smug.js');
-        hello.load(function(error) {
+        hello.smugly(function(error) {
             if (error) {
                 console.error(error);
             } else {

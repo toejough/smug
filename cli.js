@@ -1,4 +1,4 @@
-var smug = require('./smug');
+var smug = require('./smug.js');
 
 var files = process.argv.slice(2);
 

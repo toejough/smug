@@ -18,17 +18,24 @@ function smugify(file_names, smugify_callback) {
             return null;
         } else {
             var printable = gzipped.toString('base64');
-            var code = '' +
+            var eval_code = '' +
             'var zlib = require("zlib");' +
-            'exports.load = function(callback) {' +
+            'exports.smugly = function(callback) {' +
             '    zlib.gunzip(new Buffer("' + printable + '", "base64"), function(error, gunzipped) {' +
             '        if (error) { callback(error); return null; }' +
             '        eval(gunzipped.toString());' +
             '        callback(null);' +
             '    });' +
             '};';
-            var reminified = uglify.minify(code, {'fromString': true});
-            smugify_callback(null, reminified.code);
+            var smuglified = uglify.minify(eval_code, {'fromString': true});
+            // which is smaller?
+            var smallest = smuglified.code;
+            var smug_minified = 'exports.smugly = function(c) {c();};' + minified.code;
+            var reminified = uglify.minify(smug_minified, {'fromString': true}).code;
+            if (reminified.length <= smallest.length) {
+                smallest = reminified;
+            }
+            smugify_callback(null, smallest);
             return null;
         }
     });
