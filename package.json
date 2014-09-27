@@ -1,0 +1,25 @@
+{
+  "name": "smug",
+  "version": "0.1.0",
+  "description": "Really, really small executable js.",
+  "main": "smug.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toejough/smug.git"
+  },
+  "keywords": [
+    "minify",
+    "gzip",
+    "base64",
+    "eval"
+  ],
+  "author": "toejough",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toejough/smug/issues"
+  },
+  "homepage": "https://github.com/toejough/smug"
+}
