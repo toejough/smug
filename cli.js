@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var smug = require('./smug.js');
 
 var files = process.argv.slice(2);
