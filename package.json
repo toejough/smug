@@ -1,6 +1,6 @@
 {
   "name": "smug",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Really, really small executable js.",
   "main": "smug.js",
   "scripts": {
