@@ -3,6 +3,4 @@
 function hello() {
     console.log('hello world');
 }
-
-hello();
 exports.hello = hello;

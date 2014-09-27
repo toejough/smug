@@ -1,6 +1,6 @@
 {
   "name": "smug",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Really, really small executable js.",
   "main": "smug.js",
   "scripts": {
@@ -24,5 +24,8 @@
   "homepage": "https://github.com/toejough/smug",
   "dependencies": {
     "uglify-js": "^2.4.15"
+  },
+  "bin": {
+    "smugify": "./cli.js"
   }
 }

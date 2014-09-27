@@ -10,7 +10,7 @@ var uglify = require('uglify-js');
 
 
 // [ Smugify ]
-function smugify(file_names, out_file_name, smugify_callback) {
+function smugify(file_names, smugify_callback) {
     var minified = uglify.minify(file_names);
     zlib.gzip(minified.code, function(error, gzipped) {
         if (error) {
@@ -20,13 +20,15 @@ function smugify(file_names, out_file_name, smugify_callback) {
             var printable = gzipped.toString('base64');
             var code = '' +
             'var zlib = require("zlib");' +
-            'zlib.gunzip(new Buffer("' + printable + '", "base64"), function(error, gunzipped) {' +
-            '    if (error) { throw error; }' +
-            '    var evaluable = gunzipped.toString();' +
-            '    eval(evaluable);' +
-            '});';
+            'exports.load = function(callback) {' +
+            '    zlib.gunzip(new Buffer("' + printable + '", "base64"), function(error, gunzipped) {' +
+            '        if (error) { callback(error); return null; }' +
+            '        eval(gunzipped.toString());' +
+            '        callback(null);' +
+            '    });' +
+            '};';
             var reminified = uglify.minify(code, {'fromString': true});
-            fs.writeFile(out_file_name, reminified.code, smugify_callback);
+            smugify_callback(null, reminified.code);
             return null;
         }
     });
